@@ -70,11 +70,6 @@ def smooth(path, fixp, weight_data = 0.0, weight_smooth = 0.1, tolerance = 0.000
             if not(fixp[i]):
                 for j in range(len(path[0])):
                     aux = newpath[i][j]
-                    newpath[i][j] += weight_data * (path[i][j] - newpath[i][j])
-                    newpath[i][j] += weight_smooth *(newpath[(i-1) % len(path)][j] \
-                                                 + newpath[(i+1) % len(path)][j] - (2.0 * newpath[i][j]))
-
-                    # new added terms
                     newpath[i][j] += weight_smooth * (2*newpath[(i - 1)%len(path)][j] - newpath[(i - 2)%len(path)][j] \
                                                       - newpath[i][j])
                     newpath[i][j] += weight_smooth * (2*newpath[(i + 1)%len(path)][j] - newpath[(i + 2)%len(path)][j] \
