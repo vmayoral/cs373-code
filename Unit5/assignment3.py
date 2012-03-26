@@ -75,9 +75,9 @@ def smooth(path, fixp, weight_data = 0.0, weight_smooth = 0.1, tolerance = 0.000
                                                  + newpath[(i+1) % len(path)][j] - (2.0 * newpath[i][j]))
 
                     # new added terms
-                    newpath[i][j] += weight_smooth * (2*newpath[(i - 1)%len(path)][j] - newpath[(i - 2)%len(path)][j] \
+                    newpath[i][j] +=0.5* weight_smooth * (2*newpath[(i - 1)%len(path)][j] - newpath[(i - 2)%len(path)][j] \
                                                       - newpath[i][j])
-                    newpath[i][j] += weight_smooth * (2*newpath[(i + 1)%len(path)][j] - newpath[(i + 2)%len(path)][j] \
+                    newpath[i][j] += 0.5*weight_smooth * (2*newpath[(i + 1)%len(path)][j] - newpath[(i + 2)%len(path)][j] \
                                                       - newpath[i][j])
                     change += abs(aux - newpath[i][j])
     return newpath
@@ -192,9 +192,9 @@ answer2 = [[0, 0],
            [-0.7015438099112995, 1.9883232808252207]]
 
 
-newpath = smooth(testpath1, testfix1)
-for i in range(len(testpath1)):
-    print '['+ ', '.join('%.3f'%x for x in testpath1[i]) +'] -> ['+ ', '.join('%.3f'%x for x in newpath[i]) +']'
+#newpath = smooth(testpath1, testfix1)
+#for i in range(len(testpath1)):
+#    print '['+ ', '.join('%.3f'%x for x in testpath1[i]) +'] -> ['+ ', '.join('%.3f'%x for x in newpath[i]) +']'
 
 #solution_check(smooth(testpath1, testfix1), answer1)
 
